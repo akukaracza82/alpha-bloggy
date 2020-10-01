@@ -8,5 +8,12 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
+  def create
+    render plain: params[:article]
+  end
+
+  def new
+
+  end
+
 end
- 
