@@ -8,12 +8,20 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
-  def create
-    render plain: params[:article]
-  end
-
   def new
-
+    @article = Article.new
   end
+
+  def create
+    @article = Article.new(params.require(:article).permit(:title, :description))
+    if @article.save
+      flash[:notice] = "article was succefully saved"
+      redirect_to @article
+    else
+      render 'new'
+    end
+  end
+
+
 
 end
